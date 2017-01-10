@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		x:Class="Zhang.Yujia.PJ3.MainPage"
+		Title = "HomePage"
+		SizeChanged="OnPageSizeChanged">
+	 <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness"
+                    iOS="0, 20, 0, 0" />
+    </ContentPage.Padding>
+
+	 <Grid x:Name="mainGrid">
+        <!-- Initialized for portrait mode. -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="0" />
+        </Grid.ColumnDefinitions>
+		
+		<Image x:Name = "image"
+				PropertyChanged = "OnImagePropertyChanged"
+			    Grid.Row = "0" Grid.Column = "0"/>
+
+		<StackLayout x:Name="controlPanelStack"
+				Grid.Row = "1" Grid.Column = "0"
+				Padding = "10,5">
+		<Entry x:Name = "entry1"
+				Placeholder="Numeric"
+				Keyboard = "Numeric"
+				Completed = "InputAlert">
+				<Entry.Text>
+				<Binding Source = "{x:Reference slider}"
+						  Path = "Value"
+						  Mode = "TwoWay"/>
+			    </Entry.Text>
+		</Entry>
+		<Stepper x:Name="stepper"
+				Maximum="60"
+				Minimum="1"
+				HorizontalOptions = "Center"
+				ValueChanged="OnStepperValueChanged"/>
+		<Slider x:Name = "slider"
+				Maximum="60"
+				Minimum="1"
+				ValueChanged = "OnSliderValueChanged">
+				<Slider.Value>
+				 <Binding Source = "{x:Reference stepper}"
+						  Path = "Value"
+						  Mode = "TwoWay"/>
+			    </Slider.Value>
+			</Slider>
+			<Label Text = "Switch:"
+					FontAttributes = "Bold"/>
+			<Switch x:Name= "switch1"
+					Toggled = "OnControlImageToggled"/>
+		   <Button x:Name = "button"
+				  Text = "Go to ListPage"
+				  Clicked = "OnButtonClicked"/>
+		<ActivityIndicator x:Name = "activityIndicator"/>
+		</StackLayout>
+		</Grid>
+</ContentPage>

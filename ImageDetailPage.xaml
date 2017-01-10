@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		x:Class="Zhang.Yujia.PJ3.ImageDetailPage"
+		Title ="detailPage">
+
+	
+	<ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness"
+                    iOS="10, 20, 10, 0"
+                    Android="10, 0"
+                    WinPhone="10, 0" />
+    </ContentPage.Padding>
+	
+	<ContentPage.Content>
+		   <StackLayout Padding="20, 0"
+                 Spacing="20">
+	<Entry x:Name = "TitleEntry"
+			Keyboard = "Text"
+	        Placeholder = "TitleEntry"
+			Text = "{Binding Title}"/>		
+	<Entry x:Name = "DetailEntry"
+			Keyboard = "Text"
+		   Placeholder =  "DetailEntry"
+		   Text = "{Binding Detail}"/>
+
+	<DatePicker Date="{Binding 	TimeTaken}" />
+	<Entry x:Name = "ImageEntry"
+			Keyboard = "Url"
+			Placeholder = "ImageEntry"
+				Text = "{Binding Image}"/>
+
+	<!--<Image Source = "{Binding Image}"
+				VerticalOptions="FillAndExpand" /> -->
+
+		<Button x:Name = "button"
+					Text = "GoBackToListPage"
+					FontSize = "Large"
+					FontAttributes = "Bold"
+					Clicked = "OnGoBackToListPageClick"/>
+			</StackLayout>
+	</ContentPage.Content>
+</ContentPage>
